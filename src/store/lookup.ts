@@ -377,7 +377,11 @@ async function updateRetailer(
         link.price = await getPrice(page, store.labels.maxPrice, baseOptions);
       }
 
-      const response = await fetch(`http://10.1.1.110:8080/update/retailer`, { method: 'POST', body: params });
+      const response = await fetch(`${config.notifications.apns.apnsBundleId}`, { 
+        method: 'POST', 
+        headers: { 'x-api-key': `${config.notifications.apns.apnsAuthKey}` },
+        body: params 
+       });
       logger.info(response);
       return response
 }
