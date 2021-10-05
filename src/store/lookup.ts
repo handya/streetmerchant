@@ -9,6 +9,8 @@ import {
 import {Link, Store, getStores} from './model';
 import {Print, logger} from '../logger';
 import {Selector, getPrice, pageIncludesLabels} from './includes-labels';
+import fetch from 'node-fetch';
+import {URLSearchParams} from 'url';
 import {
   closePage,
   delay,
@@ -330,7 +332,7 @@ async function lookupIem(
         : link.openCartAction(browser));
     }
 
-    sendNotification(link, store);
+    await updateRetailer(store, page, link, 'inStock')
 
     if (config.page.inStockWaitTime) {
       inStock[link.url] = true;
@@ -346,9 +348,38 @@ async function lookupIem(
       link.screenshot = `success-${Date.now()}.png`;
       await page.screenshot({path: link.screenshot});
     }
+  } else {
+    await updateRetailer(store, page, link, 'outOfStock')
   }
 
   return statusCode;
+}
+
+async function updateRetailer(
+    store: Store,
+    page: Page,
+    link: Link,
+    status: string
+  ) {
+      const params = new URLSearchParams();
+      params.append('store', `${store.name}`);
+      params.append('brand', `${link.brand}`);
+      params.append('model', `${link.model}`);
+      params.append('series', `${link.series}`);
+      params.append('productPage', `${link.url}`);
+      params.append('status', `${status}`);
+      if (store.labels.maxPrice) {
+        const baseOptions: Selector = {
+          requireVisible: false,
+          selector: store.labels.container ?? 'body',
+          type: 'textContent',
+        };
+        link.price = await getPrice(page, store.labels.maxPrice, baseOptions);
+      }
+
+      const response = await fetch(`http://10.1.1.110:8080/update/retailer`, { method: 'POST', body: params });
+      logger.info(response);
+      return response
 }
 
 // eslint-disable-next-line max-params
