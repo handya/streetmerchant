@@ -2,7 +2,7 @@ name: Build and Publish Docker image
 
 on:
   push:
-    branches: [ streetmerchant-custom ]
+    branches: [ streetmerchant-custom-build ]
 
 jobs:
   build:
