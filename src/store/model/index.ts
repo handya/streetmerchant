@@ -123,6 +123,7 @@ import {Opirata} from './opirata';
 import {Otto} from './otto';
 import {Overclockers} from './overclockers';
 import {PBTech} from './pbtech';
+import {PBTechNz} from './pbtech-nz';
 import {PCByte} from './pcbyte';
 import {Pccg} from './pccg';
 import {PCComponentes} from './pccomponentes';
@@ -293,6 +294,7 @@ export const storeList = new Map([
   [Otto.name, Otto],
   [Overclockers.name, Overclockers],
   [PBTech.name, PBTech],
+  [PBTechNz.name, PBTechNz],
   [PCByte.name, PCByte],
   [Pccg.name, Pccg],
   [PCComponentes.name, PCComponentes],
