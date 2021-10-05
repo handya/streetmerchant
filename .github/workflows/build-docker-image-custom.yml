@@ -2,7 +2,7 @@ name: Build and Publish Docker image
 
 on:
   push:
-    branches: [ tests ]
+    branches: [ streetmerchant-custom ]
 
 jobs:
   build:
@@ -13,5 +13,5 @@ jobs:
       uses: VaultVulp/gp-docker-action@1.1.7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }} # Provide GITHUB_TOKEN to login into the GitHub Packages
-        image-name: waitingforstock-backend # Provide Docker image name
+        image-name: streetmerchant-custom # Provide Docker image name
         image-tag: latest # Provide Docker image tag
