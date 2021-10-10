@@ -38,4 +38,5 @@ export const NoelLeeming: Store = {
     },
   ],
   name: 'noelleeming',
+  successStatusCodes: [[0, 399], 404],
 };
