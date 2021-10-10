@@ -82,4 +82,5 @@ export const PBTechNz: Store = {
     },
   ],
   name: 'pbtech-nz',
+  successStatusCodes: [[0, 399], 404],
 };
