@@ -5,7 +5,7 @@ export const TheWarehouse: Store = {
   labels: {
     outOfStock: {
       container:
-        '#maincontent > div.container.product-detail.product-wrapper.pb-xl.pb-lg-xxxl > div > div:nth-child(2) > div.col-12.col-md-6.col-lg-5 > div > div.product-buying-box > div.cart-and-ipay.mt-md > div > div > button:disabled',
+        '#maincontent > div.main-product-detail.container.product-detail.product-wrapper> div > div:nth-child(2) > div.col-12.col-md-6.col-lg-5 > div > div.product-buying-box > div.cart-and-ipay.mt-xl > div > div > button:disabled',
       text: ['Add to Cart'],
     },
   },
